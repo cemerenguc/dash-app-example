@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[38]:
+# In[43]:
 
 
 import dash
@@ -9,10 +9,10 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
-
 app = dash.Dash(__name__)
 server=app.server
 app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"})
+
 
 df = pd.read_csv('nama_10_gdp_1_Data.csv')
 df=df[df['UNIT']=="Current prices, million euro"]
@@ -90,9 +90,9 @@ def update_graph(xaxis_column_name, yaxis_column_name,
     
     return {
         'data': [go.Scatter(
-            x=dff[dff['NA_ITEM'] == xaxis_column_name]['Value'],
-            y=dff[dff['NA_ITEM'] == yaxis_column_name]['Value'],
-            text=dff[dff['NA_ITEM'] == yaxis_column_name]['GEO'],
+            x=dff[(dff['NA_ITEM'] == xaxis_column_name) &( dff['GEO']==str(i) )]['Value'],
+            y=dff[(dff['NA_ITEM'] == yaxis_column_name) &( dff['GEO']==str(i))]['Value'],
+            text=dff[dff['GEO']==str(i)]['GEO'],
             mode='markers',
             marker={
                 'size': 15,
