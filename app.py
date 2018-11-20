@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[43]:
+# In[71]:
 
 
 import dash
@@ -9,10 +9,10 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
+
 app = dash.Dash(__name__)
 server=app.server
 app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"})
-
 
 df = pd.read_csv('nama_10_gdp_1_Data.csv')
 df=df[df['UNIT']=="Current prices, million euro"]
@@ -21,8 +21,14 @@ available_indicators = df['NA_ITEM'].unique()
 GEOS=df['GEO'].unique()
 app.layout = html.Div([
     html.Div([
-
+        html.H1(children='FINAL PROJECT - Cem Erenguc',style={
+            'textAlign': 'center'}),
+        html.H2(children='Graph 1',style={
+            'textAlign': 'center'}),
+       
         html.Div([
+            html.H3(children='Choose X Axis',style={
+            'textAlign': 'left'}),
             dcc.Dropdown(
                 id='xaxis-column',
                 options=[{'label': i, 'value': i} for i in available_indicators],
@@ -31,8 +37,10 @@ app.layout = html.Div([
             
         ],
         style={'width': '48%', 'display': 'inline-block'}),
-
+        
         html.Div([
+            html.H3(children='Choose Y Axis',style={
+            'textAlign': 'right'}),
             dcc.Dropdown(
                 id='yaxis-column',
                 options=[{'label': i, 'value': i} for i in available_indicators],
@@ -54,9 +62,13 @@ app.layout = html.Div([
     ),
     
     html.H1('\n'),
+    html.H2(children='Graph 2',style={
+            'textAlign': 'center'}),
 
     html.Div([
         html.Div([
+            html.H3(children='Choose GEO',style={
+            'textAlign': 'left'}),
             dcc.Dropdown(
                 id='country',
                 options=[{'label': i, 'value': i} for i in GEOS],
@@ -67,6 +79,8 @@ app.layout = html.Div([
         style={'width': '48%', 'display': 'inline-block'}),
 
         html.Div([
+            html.H3(children='Choose Y Axis',style={
+            'textAlign': 'right'}),
             dcc.Dropdown(
                 id='yaxis-column-b',
                 options=[{'label': i, 'value': i} for i in available_indicators],
