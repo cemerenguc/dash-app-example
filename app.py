@@ -16,6 +16,9 @@ app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"
 
 df = pd.read_csv('nama_10_gdp_1_Data.csv')
 df=df[df['UNIT']=="Current prices, million euro"]
+columns=df['GEO'].str.startswith('Euro')
+columns=[not i for i in columns]
+df=df[columns]
 print(df.head())
 available_indicators = df['NA_ITEM'].unique()
 GEOS=df['GEO'].unique()
