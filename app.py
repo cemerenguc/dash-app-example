@@ -75,7 +75,7 @@ app.layout = html.Div([
             dcc.Dropdown(
                 id='country',
                 options=[{'label': i, 'value': i} for i in GEOS],
-                value='European Union (current composition)'
+                value='Belgium'
             ),
             
         ],
