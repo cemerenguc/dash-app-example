@@ -14,7 +14,7 @@ app = dash.Dash(__name__)
 server=app.server
 app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"})
 
-df = pd.read_csv('nama_10_gdp_1_Data.csv')
+df = pd.read_csv('nama_10_gdp_1_Data.csv',,na_values=':')
 df=df[df['UNIT']=="Current prices, million euro"]
 columns=df['GEO'].str.startswith('Euro')
 columns=[not i for i in columns]
